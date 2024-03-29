@@ -2,6 +2,7 @@ import whisper
 import sys
 import subprocess
 import os
+import shutil
 
 def transcrever_audio_para_texto(caminho_do_video):
     model = whisper.load_model("small")
@@ -38,7 +39,14 @@ def incorporar_legendas(caminho_do_video, caminho_arquivo_srt):
     ]
     subprocess.run(comando_ffmpeg)
     print(f"Vídeo com legendas gerado: {caminho_video_saida}")
-
+    
+def limpar_diretorio_temporario(diretorio: str):
+    try:
+        shutil.rmtree(diretorio)
+        print(f"Diretório {diretorio} removido com sucesso.")
+    except Exception as e:
+        print(f"Erro ao remover diretório {diretorio}: {e}")
+        
 def processar_videos_no_diretorio(diretorio, incorporar_legendas_opcao=False):
     for raiz, diretorios, arquivos in os.walk(diretorio):
         for arquivo in arquivos:

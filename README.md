@@ -100,5 +100,74 @@ O script é composto por várias funções chave, como `transcrever_audio_para_t
 
 Para problemas na instalação de dependências ou execução do script, consulte as documentações oficiais das ferramentas e bibliotecas mencionadas.
 
+
+---
+
+# Documentação da API de Transcrição e Incorporação de Legendas
+
+Esta seção documenta a extensão do projeto anterior para incluir uma API construída com FastAPI, permitindo o upload de vídeos para transcrição, tradução, e opcionalmente, a incorporação de legendas. Além disso, detalha a configuração necessária para executar a aplicação em um container Docker.
+
+## API com FastAPI
+
+A API fornece endpoints para upload de vídeos e execução das funcionalidades de transcrição e tradução de forma assíncrona, com a opção de retornar o vídeo com legendas incorporadas ou apenas o arquivo de legendas.
+
+### Endpoints da API
+
+- `POST /upload/`: Recebe um arquivo de vídeo e uma flag opcional `incorporar`. Se `incorporar` for verdadeiro, o vídeo com legendas incorporadas será retornado. Caso contrário, apenas o arquivo de legendas será retornado.
+- `GET /transcrever-audio-para-texto`: Recebe o caminho de um vídeo e retorna a transcrição do áudio em texto.
+- `GET /traduzir-texto`: Recebe um texto e retorna o texto traduzido.
+
+### Uso
+
+Para fazer upload de um vídeo e obter o arquivo de legendas:
+
+```curl
+curl -X 'POST' \
+  'http://localhost:8000/upload/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@caminho_do_seu_video;type=video/mp4'
+```
+
+Para incorporar legendas no vídeo:
+
+```curl
+curl -X 'POST' \
+  'http://localhost:8000/upload/?incorporar=true' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@caminho_do_seu_video;type=video/mp4'
+```
+
+## Docker
+
+A aplicação pode ser executada em um container Docker, facilitando a configuração e execução do ambiente.
+
+### Dockerfile
+
+O `Dockerfile` incluído configura o ambiente necessário, instala dependências e prepara a aplicação para ser executada dentro do container.
+
+### Docker Compose
+
+Um arquivo `docker-compose.yml` é fornecido para facilitar a construção e execução da aplicação em containers Docker. Ele configura o serviço `app` para ser construído com base no `Dockerfile` e expõe a porta 8000 para acesso à API.
+
+### Executando a Aplicação com Docker
+
+Para construir a imagem e iniciar o serviço:
+
+```bash
+docker-compose up --build
+```
+
+A API estará acessível em `http://localhost:8000`.
+
+## Notas Importantes
+
+- A API utiliza diretórios temporários para processar os vídeos. Esses diretórios são limpos após a conclusão das tarefas.
+- As funcionalidades de verificação de FFmpeg e Translate-Shell estão comentadas, mas podem ser habilitadas para diagnóstico.
+- Assegure-se de que o Docker e o Docker Compose estejam instalados em seu sistema para utilizar a aplicação em um ambiente containerizado.
+
+Esta documentação complementa a seção anterior, fornecendo instruções para a utilização da API e execução da aplicação via Docker, oferecendo uma interface flexível e acessível para transcrição, tradução, e incorporação de legendas em vídeos.
+
 Créditos: Marcelo programador
 Github: [link](https://github.com/MarceloFullStack)

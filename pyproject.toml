@@ -11,6 +11,9 @@ whisper = "^1.1.10"
 openai-whisper = {git = "https://github.com/openai/whisper.git"}
 gtts = "^2.5.1"
 ignr = "^2.2"
+fastapi = "^0.110.0"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+python-multipart = "^0.0.9"
 
 
 [build-system]
