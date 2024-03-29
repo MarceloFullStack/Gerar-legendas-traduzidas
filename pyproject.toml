@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "tradutor"
+version = "0.1.0"
+description = ""
+authors = ["MarceloFullStack <fotofacil@live.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+whisper = "^1.1.10"
+openai-whisper = {git = "https://github.com/openai/whisper.git"}
+gtts = "^2.5.1"
+ignr = "^2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
