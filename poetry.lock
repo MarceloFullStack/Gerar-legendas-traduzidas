@@ -23,15 +23,27 @@ files = [
 ]
 
 [package.dependencies]
-exceptiongroup = {version = ">=1.0.2", markers = "python_version < \"3.11\""}
 idna = ">=2.8"
 sniffio = ">=1.1"
-typing-extensions = {version = ">=4.1", markers = "python_version < \"3.11\""}
 
 [package.extras]
 doc = ["Sphinx (>=7)", "packaging", "sphinx-autodoc-typehints (>=1.2.0)", "sphinx-rtd-theme"]
 test = ["anyio[trio]", "coverage[toml] (>=7)", "exceptiongroup (>=1.2.0)", "hypothesis (>=4.0)", "psutil (>=5.9)", "pytest (>=7.0)", "pytest-mock (>=3.6.1)", "trustme", "uvloop (>=0.17)"]
 trio = ["trio (>=0.23)"]
+
+[[package]]
+name = "asgiref"
+version = "3.8.1"
+description = "ASGI specs, helper code, and adapters"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "asgiref-3.8.1-py3-none-any.whl", hash = "sha256:3e1e3ecc849832fe52ccf2cb6686b7a55f82bb1d6aee72a58826471390335e47"},
+    {file = "asgiref-3.8.1.tar.gz", hash = "sha256:c343bd80a0bec947a9860adb4c432ffa7db769836c64238fc34bdc3fec84d590"},
+]
+
+[package.extras]
+tests = ["mypy (>=0.800)", "pytest", "pytest-asyncio"]
 
 [[package]]
 name = "certifi"
@@ -169,18 +181,36 @@ files = [
 ]
 
 [[package]]
-name = "exceptiongroup"
-version = "1.2.0"
-description = "Backport of PEP 654 (exception groups)"
+name = "deprecation"
+version = "2.1.0"
+description = "A library to handle automated deprecations"
 optional = false
-python-versions = ">=3.7"
+python-versions = "*"
 files = [
-    {file = "exceptiongroup-1.2.0-py3-none-any.whl", hash = "sha256:4bfd3996ac73b41e9b9628b04e079f193850720ea5945fc96a08633c66912f14"},
-    {file = "exceptiongroup-1.2.0.tar.gz", hash = "sha256:91f5c769735f051a4290d52edd0858999b57e5876e9f85937691bd4c9fa3ed68"},
+    {file = "deprecation-2.1.0-py2.py3-none-any.whl", hash = "sha256:a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a"},
+    {file = "deprecation-2.1.0.tar.gz", hash = "sha256:72b3bde64e5d778694b0cf68178aed03d15e15477116add3fb773e581f9518ff"},
 ]
 
+[package.dependencies]
+packaging = "*"
+
+[[package]]
+name = "ecdsa"
+version = "0.18.0"
+description = "ECDSA cryptographic signature library (pure python)"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+files = [
+    {file = "ecdsa-0.18.0-py2.py3-none-any.whl", hash = "sha256:80600258e7ed2f16b9aa1d7c295bd70194109ad5a30fdee0eaeefef1d4c559dd"},
+    {file = "ecdsa-0.18.0.tar.gz", hash = "sha256:190348041559e21b22a1d65cee485282ca11a6f81d503fddb84d5017e9ed1e49"},
+]
+
+[package.dependencies]
+six = ">=1.9.0"
+
 [package.extras]
-test = ["pytest (>=6)"]
+gmpy = ["gmpy"]
+gmpy2 = ["gmpy2"]
 
 [[package]]
 name = "fastapi"
@@ -200,6 +230,56 @@ typing-extensions = ">=4.8.0"
 
 [package.extras]
 all = ["email-validator (>=2.0.0)", "httpx (>=0.23.0)", "itsdangerous (>=1.1.0)", "jinja2 (>=2.11.2)", "orjson (>=3.2.1)", "pydantic-extra-types (>=2.0.0)", "pydantic-settings (>=2.0.0)", "python-multipart (>=0.0.7)", "pyyaml (>=5.3.1)", "ujson (>=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0)", "uvicorn[standard] (>=0.12.0)"]
+
+[[package]]
+name = "fastapi-keycloak"
+version = "1.0.11"
+description = "Keycloak API Client for integrating authentication and authorization with FastAPI"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "fastapi_keycloak-1.0.11-py3-none-any.whl", hash = "sha256:2d2da95cc9bfd2c02f80bbff3bd4ed985d398a07354da917ee4f7e6416373b29"},
+    {file = "fastapi_keycloak-1.0.11.tar.gz", hash = "sha256:e3b4e290bfbc47077cb9bca33f6bac758216a40bfd9fe13c843c71d56087e20c"},
+]
+
+[package.dependencies]
+anyio = ">=3.4.0"
+asgiref = ">=3.4.1"
+certifi = ">=2021.10.8"
+charset-normalizer = ">=2.0.9"
+click = ">=8.0.3"
+ecdsa = ">=0.17.0"
+fastapi = ">=0.70.1"
+h11 = ">=0.12.0"
+idna = ">=3.3"
+itsdangerous = ">=2.0.1"
+pyasn1 = ">=0.4.8"
+pydantic = ">=1.5a1"
+python-jose = ">=3.3.0"
+requests = ">=2.26.0"
+rsa = ">=4.8"
+six = ">=1.16.0"
+sniffio = ">=1.2.0"
+starlette = ">=0.16.0"
+typing-extensions = ">=4.0.1"
+urllib3 = ">=1.26.7"
+uvicorn = ">=0.16.0"
+
+[[package]]
+name = "fastapi-keycloak-middleware"
+version = "0.3.1"
+description = "Middleware for FastAPI to authenticate a user against keycloak"
+optional = false
+python-versions = ">=3.10,<4.0"
+files = [
+    {file = "fastapi_keycloak_middleware-0.3.1-py3-none-any.whl", hash = "sha256:218e36dd61725c45fe71c3fefefc70058b220e11b219448036569b613ea70e2b"},
+    {file = "fastapi_keycloak_middleware-0.3.1.tar.gz", hash = "sha256:7fc3f8d70203b84bdf9804cc473bd8a600cda1fe2933e93d022a602051f5326f"},
+]
+
+[package.dependencies]
+fastapi = ">=0.73.0"
+install = ">=1.3.5,<2.0.0"
+python-keycloak = ">2.14.0,<3.9.1"
 
 [[package]]
 name = "filelock"
@@ -350,6 +430,28 @@ python-versions = "*"
 files = [
     {file = "ignr-2.2-py3-none-any.whl", hash = "sha256:e8b6276aedab79b066d795e6e4b3f7b4c5668b68bf50a6c4fbf2b0cd17dda1db"},
     {file = "ignr-2.2.tar.gz", hash = "sha256:382a81be67a34538a11ff8ab69063419b388cc32f01b4ace599c3f1c06526df4"},
+]
+
+[[package]]
+name = "install"
+version = "1.3.5"
+description = "Install packages from within code"
+optional = false
+python-versions = ">=2.7, >=3.5"
+files = [
+    {file = "install-1.3.5-py3-none-any.whl", hash = "sha256:0d3fadf4aa62c95efe8d34757c8507eb46177f86c016c21c6551eafc6a53d5a9"},
+    {file = "install-1.3.5.tar.gz", hash = "sha256:e67c8a0be5ccf8cb4ffa17d090f3a61b6e820e6a7e21cd1d2c0f7bc59b18e647"},
+]
+
+[[package]]
+name = "itsdangerous"
+version = "2.1.2"
+description = "Safely pass data to untrusted environments and back."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "itsdangerous-2.1.2-py3-none-any.whl", hash = "sha256:2c2349112351b88699d8d4b6b075022c0808887cb7ad10069318a8b0bc88db44"},
+    {file = "itsdangerous-2.1.2.tar.gz", hash = "sha256:5dbbc68b317e5e42f327f9021763545dc3fc3bfe22e6deb96aaf1fc38874156a"},
 ]
 
 [[package]]
@@ -763,6 +865,28 @@ reference = "HEAD"
 resolved_reference = "ba3f3cd54b0e5b8ce1ab3de13e32122d0d5f98ab"
 
 [[package]]
+name = "packaging"
+version = "24.0"
+description = "Core utilities for Python packages"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
+    {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
+]
+
+[[package]]
+name = "pyasn1"
+version = "0.6.0"
+description = "Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pyasn1-0.6.0-py2.py3-none-any.whl", hash = "sha256:cca4bb0f2df5504f02f6f8a775b6e416ff9b0b3b16f7ee80b5a3153d9b804473"},
+    {file = "pyasn1-0.6.0.tar.gz", hash = "sha256:3a35ab2c4b5ef98e17dfdec8ab074046fbda76e281c5a706ccd82328cfc8f64c"},
+]
+
+[[package]]
 name = "pydantic"
 version = "2.6.4"
 description = "Data validation using Python type hints"
@@ -885,6 +1009,47 @@ files = [
 
 [package.extras]
 cli = ["click (>=5.0)"]
+
+[[package]]
+name = "python-jose"
+version = "3.3.0"
+description = "JOSE implementation in Python"
+optional = false
+python-versions = "*"
+files = [
+    {file = "python-jose-3.3.0.tar.gz", hash = "sha256:55779b5e6ad599c6336191246e95eb2293a9ddebd555f796a65f838f07e5d78a"},
+    {file = "python_jose-3.3.0-py2.py3-none-any.whl", hash = "sha256:9b1376b023f8b298536eedd47ae1089bcdb848f1535ab30555cd92002d78923a"},
+]
+
+[package.dependencies]
+ecdsa = "!=0.15"
+pyasn1 = "*"
+rsa = "*"
+
+[package.extras]
+cryptography = ["cryptography (>=3.4.0)"]
+pycrypto = ["pyasn1", "pycrypto (>=2.6.0,<2.7.0)"]
+pycryptodome = ["pyasn1", "pycryptodome (>=3.3.1,<4.0.0)"]
+
+[[package]]
+name = "python-keycloak"
+version = "3.9.0"
+description = "python-keycloak is a Python package providing access to the Keycloak API."
+optional = false
+python-versions = ">=3.8,<4.0"
+files = [
+    {file = "python_keycloak-3.9.0-py3-none-any.whl", hash = "sha256:ce6a33af5840469e71090b8f556b67488561c723693f3581396ed088bce0665a"},
+    {file = "python_keycloak-3.9.0.tar.gz", hash = "sha256:4c2cd580ded92326b74a376fe453519b3a6db019803032cae26a4b9099e1afd0"},
+]
+
+[package.dependencies]
+deprecation = ">=2.1.0"
+python-jose = ">=3.3.0"
+requests = ">=2.20.0"
+requests-toolbelt = ">=0.6.0"
+
+[package.extras]
+docs = ["Sphinx (>=6.1.0,<7.0.0)", "alabaster (>=0.7.12,<0.8.0)", "commonmark (>=0.9.1,<0.10.0)", "m2r2 (>=0.3.2,<0.4.0)", "mock (>=4.0.3,<5.0.0)", "readthedocs-sphinx-ext (>=2.1.9,<3.0.0)", "recommonmark (>=0.7.1,<0.8.0)", "sphinx-autoapi (>=3.0.0,<4.0.0)", "sphinx-rtd-theme (>=1.0.0,<2.0.0)"]
 
 [[package]]
 name = "python-multipart"
@@ -1084,6 +1249,34 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "requests-toolbelt"
+version = "1.0.0"
+description = "A utility belt for advanced users of python-requests"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "requests-toolbelt-1.0.0.tar.gz", hash = "sha256:7681a0a3d047012b5bdc0ee37d7f8f07ebe76ab08caeccfc3921ce23c88d5bc6"},
+    {file = "requests_toolbelt-1.0.0-py2.py3-none-any.whl", hash = "sha256:cccfdd665f0a24fcf4726e690f65639d272bb0637b9b92dfd91a5568ccf6bd06"},
+]
+
+[package.dependencies]
+requests = ">=2.0.1,<3.0.0"
+
+[[package]]
+name = "rsa"
+version = "4.9"
+description = "Pure-Python RSA implementation"
+optional = false
+python-versions = ">=3.6,<4"
+files = [
+    {file = "rsa-4.9-py3-none-any.whl", hash = "sha256:90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7"},
+    {file = "rsa-4.9.tar.gz", hash = "sha256:e38464a49c6c85d7f1351b0126661487a7e0a14a50f1675ec50eb34d4f20ef21"},
+]
+
+[package.dependencies]
+pyasn1 = ">=0.1.3"
+
+[[package]]
 name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
@@ -1118,7 +1311,6 @@ files = [
 
 [package.dependencies]
 anyio = ">=3.4.0,<5"
-typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
@@ -1240,7 +1432,6 @@ nvidia-cusparse-cu12 = {version = "12.1.0.106", markers = "platform_system == \"
 nvidia-nccl-cu12 = {version = "2.19.3", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
 nvidia-nvtx-cu12 = {version = "12.1.105", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
 sympy = "*"
-triton = {version = "2.2.0", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\" and python_version < \"3.12\""}
 typing-extensions = ">=4.8.0"
 
 [package.extras]
@@ -1336,7 +1527,6 @@ h11 = ">=0.8"
 httptools = {version = ">=0.5.0", optional = true, markers = "extra == \"standard\""}
 python-dotenv = {version = ">=0.13", optional = true, markers = "extra == \"standard\""}
 pyyaml = {version = ">=5.1", optional = true, markers = "extra == \"standard\""}
-typing-extensions = {version = ">=4.0", markers = "python_version < \"3.11\""}
 uvloop = {version = ">=0.14.0,<0.15.0 || >0.15.0,<0.15.1 || >0.15.1", optional = true, markers = "(sys_platform != \"win32\" and sys_platform != \"cygwin\") and platform_python_implementation != \"PyPy\" and extra == \"standard\""}
 watchfiles = {version = ">=0.13", optional = true, markers = "extra == \"standard\""}
 websockets = {version = ">=10.4", optional = true, markers = "extra == \"standard\""}
@@ -1571,5 +1761,5 @@ six = "*"
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.9"
-content-hash = "9b549760925e9074c996e203476af5f6d4a4fb5b2afc8197a8942a82c5817b06"
+python-versions = "^3.12"
+content-hash = "996b3986208d518b175b98a4970ecff170a71e53a906465fb777a3827ee64900"

@@ -6,7 +6,7 @@ authors = ["MarceloFullStack <fotofacil@live.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.12"
 whisper = "^1.1.10"
 openai-whisper = {git = "https://github.com/openai/whisper.git"}
 gtts = "^2.5.1"
@@ -14,6 +14,8 @@ ignr = "^2.2"
 fastapi = "^0.110.0"
 uvicorn = {extras = ["standard"], version = "^0.29.0"}
 python-multipart = "^0.0.9"
+fastapi-keycloak = "^1.0.11"
+fastapi-keycloak-middleware = "^0.3.1"
 
 
 [build-system]
