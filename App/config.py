@@ -1,0 +1,5 @@
+KEYCLOAK_URL = "http://localhost:8089"
+REALM = "tradutor_videos"
+CLIENT_ID = "tradutor_client"
+CLIENT_SECRET = "4Kwl6DY5GvX8JGWqIIQZImUvS8GQsJwu"
+TOKEN_URL = f"{KEYCLOAK_URL}/realms/{REALM}/protocol/openid-connect/token"
